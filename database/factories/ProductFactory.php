@@ -17,7 +17,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => $this->faker->unique()->word(),
+            "category_id" => $this->faker->numberBetween(1, 5),
+            "code" => $this->faker->unique()->regexify('[A-Z]{5}[0-4]{3}'),
+            "amount" => $this->faker->randomDigit()
         ];
     }
 }

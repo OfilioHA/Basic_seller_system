@@ -1,32 +1,68 @@
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableContainer,
+    TableCell,
+    TableRow,
+    Divider,
+    Typography,
+    IconButton,
+    Stack,
+} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect, useState } from "react";
+import { useFetch } from "../libs/useFetch";
 
-import axios from "axios"
+export default function dataTable(props) {
+    const { title, headers, visible, route } = props;
 
-export const useFetch = async (url, _loading, options) =>{
-    let status = null;
-    let response = null;
-    let data = null;
+    const [rows, setRows] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    try {
-        const crftoken = document.querySelector('meta[name="csrf-token"]').content;
-        
-        response = await axios.request({
-            url: `/api/${url}`,
-            headers: {
-                "X-CSRF-TOKEN": crftoken,
-            },
-            ...options,
-        });
+    useEffect(() => {
+        let fetchData = async () =>{
+            const routeData = route + "/list";
+            const { data } = await useFetch(routeData);
+            setRows(data);
+        }
+        fetchData();
+    }, []);
 
-        ({ data, status } = response);
-    } catch (error) {
-        console.log(error);
-    } finally {
-        _loading = false;
-    }
-
-    return {
-        data,
-        status,
-        response,
-    };
+    return (
+        <>
+            <Typography variant="h4">{title}</Typography>
+            <Divider />
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            {headers.map((item, key) => (
+                                <TableCell key={key}>{item}</TableCell>
+                            ))}
+                            <TableCell>Acciones</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((item, keyItem) => (
+                            <TableRow key={keyItem}>
+                                {visible.map((prop, key) => (
+                                    <TableCell key={key}>
+                                        {item[prop]}
+                                    </TableCell>
+                                ))}
+                                <TableCell>
+                                    <Stack direction="row" spacing={2}>
+                                        <IconButton component="span">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Stack>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
+    );
 }
