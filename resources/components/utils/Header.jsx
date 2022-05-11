@@ -37,7 +37,7 @@ export const Header = () => {
 
     return (
         <header>
-            <AppBar position="static">
+            <AppBar position="static" sx={{mb: 3}}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon
