@@ -15,19 +15,20 @@ export function ProductList() {
     const config = {
         columns: [
             {
-                field: "name",
-                headerName: "Nombre",
-                width: 160
-            },
-            {
                 field: "code",
                 headerName: "Código",
-                width: 160
+                width: 130
+            },
+            {
+                field: "name",
+                headerName: "Nombre",
+                flex: 1,
+                minWidth: 140
             },
             {
                 field: "categoryName",
                 headerName: "Modelo",
-                width: 130,
+                width: 160,
                 valueGetter: (params)=>{
                     return params.row.model.name
                 }
@@ -35,7 +36,7 @@ export function ProductList() {
             {
                 field: "brandName",
                 headerName: "Marca",
-                width: 130,
+                width: 160,
                 valueGetter: (params)=>{
                     return params.row.model.brand.name
                 }
@@ -43,13 +44,23 @@ export function ProductList() {
             {
                 field: "amount",
                 headerName: "Cantidad",
+                width: 130,
                 type: 'number',
-                width: 130
+            },
+            {
+                field: "price",
+                headerName: "Precio",
+                width: 130,
+                type: 'number',
+                valueGetter: (params)=>{
+                    return `${params.row.price} C$`
+                }
             },
             {
                 field: "actions",
                 type: "actions",
                 headerName: "Acciones",
+                width: 170,
                 getActions: (params) => [
                     <GridActionsCellItem 
                         icon={<Delete

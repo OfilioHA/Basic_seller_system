@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('code', 8)->unique();
             $table->string('name');
             $table->integer('amount');
+            $table->float('price');
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class ProductFactory extends Factory
             "name" => $this->faker->unique()->word(),
             "category_id" => $this->faker->numberBetween(1, 5),
             "code" => $this->faker->unique()->regexify('[A-Z]{5}[0-4]{3}'),
+            "price" => $this->faker->numberBetween(1, 99),
             "amount" => $this->faker->randomDigit()
         ];
     }

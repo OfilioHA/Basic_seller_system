@@ -1,7 +1,7 @@
-
-
-export function Footer(){
+export function Footer() {
     return (
-        <h1>BYe</h1>
+        <footer>
+            <h1>Bye</h1>
+        </footer>
     );
 }

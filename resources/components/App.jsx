@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./utils/Layout";
 import { Home } from "./home";
 import { ProductList } from "./products/list";
+import { ProductForm } from "./products/form";
 
 export function App() {
     return (
@@ -12,6 +13,7 @@ export function App() {
                 </Route>
                 <Route path="products" element={<Layout />}>
                     <Route index element={<ProductList />} />
+                    <Route path="create" element={<ProductForm />} /> 
                 </Route>
             </Routes>
         </BrowserRouter>
