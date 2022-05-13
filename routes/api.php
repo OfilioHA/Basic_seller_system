@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogsController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('products')->group(function(){
     Route::get('/list', [ProductController::class, 'list']);
+});
+
+Route::prefix('catalogs')->group(function(){
+    Route::get('/categories', [CatalogsController::class, 'categories']);
+    Route::get('/brands', [CatalogsController::class, 'brands']); 
+    Route::get('/models/{brandId}', [CatalogsController::class, 'models']); 
 });

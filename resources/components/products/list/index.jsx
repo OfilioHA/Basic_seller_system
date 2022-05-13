@@ -2,9 +2,8 @@ import {
     DataGrid,
     GridActionsCellItem
 } from "@mui/x-data-grid";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Divider } from "@mui/material";
 import { Delete, Visibility } from "@mui/icons-material";
-import { Divider } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../libs/useFetch";
 
